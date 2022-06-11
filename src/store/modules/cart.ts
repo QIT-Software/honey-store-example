@@ -9,7 +9,17 @@ export default class CartModule extends VuexModule {
   public checkoutStatus: string | null = null;
 
   get getItems() {
-    return this.items;
+    return this.items
+      .map((item) => {
+        const product = this.context.rootState.products.products.find((product) => product.id === item.id);
+        if (product) {
+          return {
+            ...product,
+            quantity: item.quantity,
+          };
+        }
+      })
+      .filter(Boolean);
   }
 
   get cartItemsCount() {

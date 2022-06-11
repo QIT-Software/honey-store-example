@@ -11,7 +11,7 @@ Vue.use(Vuex);
 const vuexLocal = new VuexPersist({
   key: "honey-store-cart",
   storage: window.localStorage,
-  reducer: (state) => ({ cart: state.cart }),
+  reducer: (state: any) => ({ cart: state.cart }),
 });
 
 export default new Vuex.Store({

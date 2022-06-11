@@ -114,7 +114,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { mapActions, mapGetters } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
 import TheLoader from "../components/main/TheLoader.vue";
 import { LoadStatuses } from "@/enums/LoadStatuses";
 
@@ -142,10 +142,10 @@ export default Vue.extend({
     TheLoader,
   },
   computed: {
+    ...mapState("products", ["productsLoadStatus"]),
     ...mapGetters({
       totalPrice: "cart/cartTotalPrice",
       products: "products/getProducts",
-      productsLoadStatus: "products/getProductsLoadStatus",
     }),
   },
   methods: {

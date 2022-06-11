@@ -47,7 +47,7 @@ export default {
     addOne() {
       let item = {
         id: this.item.id,
-        qty: this.item.qty,
+        quantity: this.item.qty,
       };
       this.addOneToCart(item);
     },

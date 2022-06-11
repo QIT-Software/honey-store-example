@@ -1,8 +1,8 @@
 <template>
   <div class="content-wrapper">
-    <the-loader v-if="productLoadStatus === 1"></the-loader>
+    <TheLoader v-if="productLoadStatus === LoadStatuses.FETCHING" />
     <!-- Product Details Area Start -->
-    <div v-else-if="productLoadStatus === 2" class="single-product-area section-padding-100 clearfix">
+    <div v-else-if="productLoadStatus === LoadStatuses.LOADED" class="single-product-area section-padding-100 clearfix">
       <div class="container-fluid">
         <div class="row">
           <div class="col-12 col-lg-7 mt-5 mt-xl-0 mb-30">
@@ -23,12 +23,12 @@
               <!-- Product Meta Data -->
               <div class="product-meta-data">
                 <div class="line"></div>
-                <p class="product-price">{{ product.price }} с.</p>
+                <p class="product-price">{{ product.price }} $.</p>
                 <a href="product-details.html">
                   <h6>{{ product.name }}</h6>
                 </a>
                 <!-- Avaiable -->
-                <p class="avaibility"><i class="las la-square-full"></i> Есть на складе</p>
+                <p class="avaibility"><i class="las la-square-full"></i> In stock</p>
               </div>
 
               <div class="short_overview my-5">
@@ -36,19 +36,19 @@
               </div>
 
               <!-- Add to Cart Form -->
-              <form class="cart clearfix" v-on:submit.prevent>
+              <form class="cart clearfix" @submit.prevent>
                 <div class="cart-btn d-flex mb-50">
-                  <p>Кол-во</p>
+                  <p>Quantity</p>
                   <div class="quantity">
-                    <span class="qty-minus" @click="qty === 1 ? (qty = 1) : qty--"
+                    <span class="qty-minus" @click="handleMinusQuantity"
                       ><i class="las la-caret-down" aria-hidden="true"></i
                     ></span>
-                    <input type="number" class="qty-text" name="quantity" readonly="readonly" :value="qty" />
-                    <span class="qty-plus" @click="qty++"><i class="las la-caret-up" aria-hidden="true"></i></span>
+                    <input type="number" class="qty-text" name="quantity" readonly="readonly" :value="quantity" />
+                    <span class="qty-plus" @click="quantity++"><i class="las la-caret-up" aria-hidden="true"></i></span>
                   </div>
                 </div>
                 <button type="submit" name="addtocart" value="5" class="btn amado-btn" @click="addToCart">
-                  Добавить в корзину
+                  Add to cart
                 </button>
               </form>
             </div>
@@ -58,38 +58,47 @@
     </div>
 
     <!-- Product Details Area End -->
-    <not-found v-else></not-found>
+    <NotFound v-else></NotFound>
   </div>
 </template>
 
-<script>
-import { mapActions, mapGetters } from "vuex";
-import NotFound from "../components/main/NotFound";
-import TheLoader from "../components/main/TheLoader";
+<script lang="ts">
+import Vue from "vue";
+import { mapActions, mapState } from "vuex";
+import NotFound from "../components/main/NotFound.vue";
+import TheLoader from "../components/main/TheLoader.vue";
+import { LoadStatuses } from "@/enums/LoadStatuses";
 
-export default {
-  name: "Product",
+export default Vue.extend({
+  name: "ProductPage",
   components: {
     NotFound,
     TheLoader,
   },
   data() {
     return {
-      qty: 1,
+      quantity: 1,
+      LoadStatuses,
     };
   },
   watch: {
     $route: "fetchProduct",
   },
-  computed: mapGetters({
-    product: "products/getProduct",
-    productLoadStatus: "products/getProductLoadStatus",
-  }),
+  computed: {
+    ...mapState("products", ["productLoadStatus", "product"]),
+  },
   methods: {
     ...mapActions({
-      loadProductBySlug: "products/loadProductBySlug",
+      loadProductBySlug: "products/fetchProductBySlug",
       addProductToCart: "cart/addToCart",
     }),
+    handleMinusQuantity() {
+      if (this.quantity === 1) {
+        return;
+      }
+
+      this.quantity -= 1;
+    },
 
     fetchProduct() {
       let slug = this.$route.params.slug;
@@ -97,9 +106,9 @@ export default {
     },
 
     addToCart() {
-      let product = {
+      const product = {
         id: this.product.id,
-        qty: this.qty,
+        quantity: this.qty,
       };
       this.addProductToCart({ ...product });
     },
@@ -107,7 +116,7 @@ export default {
   mounted() {
     this.fetchProduct();
   },
-};
+});
 </script>
 
 <style scoped>

@@ -1,4 +1,4 @@
-const Catalogs = () => import("../pages/Catalogs");
+const Catalogs = () => import("../pages/CatalogsPage");
 
 const defaultRouteMetaData = {
   title: "Catalogs - HoneyStore",

@@ -48,7 +48,7 @@ export default {
   props: ["slug"],
   data() {
     return {
-      qty: 1,
+      quantity: 1,
     };
   },
   computed: {
@@ -68,7 +68,7 @@ export default {
       let item = {
         id: this.product.id,
         stock: this.product.stock,
-        qty: this.qty,
+        quantity: this.quantity,
       };
       this.addProductToCart({ ...item });
     },

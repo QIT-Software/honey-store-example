@@ -1,14 +1,13 @@
 import catalogsRouter from "@/router/catalogs.router";
 
 const Home = () => import("../pages/HomePage");
-const Product = () => import("../pages/Product");
+const Product = () => import("../pages/ProductPage");
 const Cart = () => import("../pages/CartPage");
 const Checkout = () => import("../pages/CheckoutPage");
 const NotFound = () => import("../components/main/NotFound");
 
 export default [
   [
-    ...catalogsRouter,
     {
       path: "/",
       name: "home",
@@ -48,6 +47,7 @@ export default [
         title: "404 - Page not found",
       },
     },
+    ...catalogsRouter,
     {
       path: "*",
       redirect: { name: "404" },
