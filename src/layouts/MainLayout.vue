@@ -1,6 +1,6 @@
 <template>
   <div ref="appWrapper">
-    <search-bar />
+    <SearchBar />
     <div class="main-content-wrapper d-flex clearfix">
       <MainHeader />
       <keep-alive include="404">
@@ -12,11 +12,12 @@
 </template>
 
 <script>
+import Vue from "vue";
 import SearchBar from "../components/main/SearchBar";
 import MainHeader from "../components/main/MainHeader";
 import MainFooter from "../components/main/MainFooter";
 
-export default {
+export default Vue.extend({
   name: "MainLayout",
   components: {
     SearchBar,
@@ -39,7 +40,7 @@ export default {
       }
     },
   },
-};
+});
 </script>
 
 <style scoped></style>

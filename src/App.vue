@@ -1,18 +1,24 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <MainLayout>
+      <router-view />
+    </MainLayout>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+import MainLayout from "@/layouts/MainLayout.vue";
 
 export default Vue.extend({
   name: "App",
   components: {
-    HelloWorld,
+    MainLayout,
+  },
+  computed: {
+    layout() {
+      return (this.$route.meta.layout || "main") + "-layout";
+    },
   },
 });
 </script>
