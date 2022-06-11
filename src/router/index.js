@@ -1,15 +1,13 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import NProgress from "vue-nprogress";
 
 Vue.use(VueRouter);
 
 const Catalogs = () => import("../pages/CatalogsPage");
-const Home = () => import("../pages/HomePage");
 const Product = () => import("../pages/ProductPage");
 const Cart = () => import("../pages/CartPage");
 const Checkout = () => import("../pages/CheckoutPage");
-const NotFound = () => import("../components/main/NotFound");
+const NotFound = () => import("../components/Main/NotFound");
 const About = () => import("../pages/AboutPage");
 const Delivering = () => import("../pages/DeliveringPage");
 
@@ -18,15 +16,10 @@ const router = new VueRouter({
   routes: [
     {
       path: "/",
-      name: "home",
-      meta: {
-        title: "HoneyStore",
-        layout: "main",
-      },
-      component: Home,
+      redirect: { name: "catalogs" },
     },
     {
-      path: "/product/:slug",
+      path: "/product/:id",
       name: "product",
       component: Product,
       props: true,
@@ -97,22 +90,6 @@ const router = new VueRouter({
       redirect: { name: "404" },
     },
   ],
-});
-
-router.beforeEach((to, from, next) => {
-  // If this isn't an initial page load.
-  document.title = to.meta.title || "HoneyStore";
-
-  if (to.name) {
-    // Start the route progress bar.
-    NProgress.start();
-  }
-  next();
-});
-
-router.afterEach(() => {
-  // Complete the animation of the route progress bar.
-  NProgress.done();
 });
 
 export default router;

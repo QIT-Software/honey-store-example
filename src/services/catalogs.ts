@@ -3,7 +3,7 @@ import { mockCatalogs } from "@/constants/MockedData";
 const mockCatalogsResponse = new Promise((resolve) => {
   setTimeout(() => {
     resolve({ data: mockCatalogs });
-  }, 1500);
+  }, 300);
 });
 
 const mockCatalogBySlugResponse = (slug: string) =>

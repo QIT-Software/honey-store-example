@@ -20,6 +20,7 @@ export default class ProductsModule extends VuexModule {
   public productLoadStatus: LoadStatuses = null;
 
   public priceRange: [number, number] = [0, 100];
+  public maxPrice = 0;
 
   get getProducts() {
     return this.products.filter((product) => {
@@ -34,13 +35,11 @@ export default class ProductsModule extends VuexModule {
 
     return ProductsApi.getProducts(payload)
       .then(({ data }) => {
-        if (!data.length) {
-          return;
-        }
         this.context.commit("setProducts", data);
         this.context.commit("setProductsLoadStatus", LoadStatuses.LOADED);
 
         const maxPrice = Number(maxBy(data, "price").price);
+        this.context.commit("setMaxPrice", maxPrice);
         this.context.commit("setPriceRange", [0, maxPrice]);
       })
       .catch(() => {
@@ -80,6 +79,11 @@ export default class ProductsModule extends VuexModule {
   @Mutation
   public setPriceRange(priceRange: [number, number]): void {
     this.priceRange = [...priceRange];
+  }
+
+  @Mutation
+  public setMaxPrice(price: number): void {
+    this.maxPrice = price;
   }
 
   @Mutation

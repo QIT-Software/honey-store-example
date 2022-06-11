@@ -22,6 +22,10 @@ export type CheckoutOrderForm = {
 
 export type CheckoutOrder = CheckoutOrderForm & { products: CartItem[] };
 
+const doesNameIncludesKeyword = (productName: string, keyword: string): boolean => {
+  return productName.trim().toLowerCase().includes(keyword.trim().toLowerCase());
+};
+
 const mockProductsResponse = (searchOptions: ProductSearchOptions) =>
   new Promise((resolve) => {
     let products = [];
@@ -34,11 +38,13 @@ const mockProductsResponse = (searchOptions: ProductSearchOptions) =>
 
     if (search && catalog) {
       const catalogId = mockCatalogs.find((catalogItem) => catalogItem.slug === catalog).id;
-      products = mockProducts.filter((product) => product.catalog_id === catalogId && product.name.includes(search));
+      products = mockProducts.filter(
+        (product) => product.catalog_id === catalogId && doesNameIncludesKeyword(product.name, search)
+      );
     }
 
     if (search && !catalog) {
-      products = mockProducts.filter((product) => product.name.includes(search));
+      products = mockProducts.filter((product) => doesNameIncludesKeyword(product.name, search));
     }
 
     if (catalog && !search) {
@@ -52,7 +58,7 @@ const mockProductsResponse = (searchOptions: ProductSearchOptions) =>
   });
 
 export default {
-  getProducts(options: ProductSearchOptions) {
+  getProducts(options: ProductSearchOptions = {}) {
     return mockProductsResponse(options);
   },
 

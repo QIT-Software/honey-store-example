@@ -6,11 +6,14 @@
 
     <div class="amado_product_area section-padding-100">
       <div class="container-fluid">
-        <div class="row" v-if="productsLoadStatus === LoadStatuses.LOADED">
+        <div class="row" v-if="productsLoadStatus === LoadStatuses.LOADED && products.length">
           <ProductCard v-for="product in products" :key="product.id" :product="product" />
         </div>
 
-        <div v-else-if="productsLoadStatus === LoadStatuses.FAILED" class="m-auto p-1 alert-warning text-center">
+        <div
+          v-else-if="productsLoadStatus === LoadStatuses.FAILED || !products.length"
+          class="m-auto p-1 alert-warning text-center"
+        >
           <h3>There is nothing, but probably will appear later! <strong>:)</strong></h3>
         </div>
       </div>
@@ -22,8 +25,8 @@
 import Vue from "vue";
 import { mapGetters, mapState } from "vuex";
 
-import TheLoader from "../main/TheLoader.vue";
-import TheSidebar from "../main/TheSidebar.vue";
+import TheLoader from "../Main/TheLoader.vue";
+import TheSidebar from "../Main/TheSidebar.vue";
 import ProductCard from "./ProductCard.vue";
 import { LoadStatuses } from "@/enums/LoadStatuses";
 

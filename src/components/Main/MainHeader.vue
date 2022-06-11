@@ -4,7 +4,7 @@
     <div class="mobile-nav">
       <!-- Navbar Brand -->
       <div class="amado-navbar-brand">
-        <router-link :to="{ name: 'home' }">
+        <router-link :to="{ name: 'catalogs' }">
           <img src="@/assets/images/core-img/logo-black.svg" width="100" alt="" />
         </router-link>
       </div>
@@ -22,7 +22,7 @@
       </div>
       <!-- Logo -->
       <div class="logo">
-        <router-link :to="{ name: 'home' }">
+        <router-link :to="{ name: 'catalogs' }">
           <img src="@/assets/images/core-img/logo-black.svg" width="152" height="88" alt="" />
         </router-link>
       </div>

@@ -1,7 +1,7 @@
 <template>
   <tr>
     <td class="cart_product_img">
-      <router-link :to="{ name: 'product', params: { slug: item.slug } }">
+      <router-link :to="{ name: 'product', params: { product_id: item.id } }">
         <img src="@/assets/images/product-img/product1.jpg" :alt="item.name" />
       </router-link>
     </td>
@@ -9,7 +9,7 @@
       <h5>{{ item.name }}</h5>
     </td>
     <td class="price">
-      <span>{{ item.price }} с.</span>
+      <span>{{ item.price }} $.</span>
     </td>
     <td class="qty">
       <div class="qty-btn d-flex">
@@ -17,7 +17,7 @@
           <span class="qty-minus" @click="removeOne()">
             <i class="las la-minus" aria-hidden="true"></i>
           </span>
-          <input type="number" class="qty-text" readonly="readonly" :value="item.qty" />
+          <input type="number" class="qty-text" readonly="readonly" :value="item.quantity" />
           <span class="qty-plus" @click="addOne()">
             <i class="las la-plus" aria-hidden="true"></i>
           </span>
@@ -27,16 +27,17 @@
   </tr>
 </template>
 
-<script>
+<script lang="ts">
+import Vue, { PropType } from "vue";
 import { mapMutations } from "vuex";
-export default {
-  name: "cart-item",
+import { CartItem } from "@/services/products";
+
+export default Vue.extend({
+  name: "CartItem",
   props: {
     item: {
-      type: Object,
-      default() {
-        return {};
-      },
+      type: Object as PropType<CartItem>,
+      default: () => ({}),
     },
   },
   methods: {
@@ -45,9 +46,9 @@ export default {
       removeOneFromCart: "cart/removeOneFromCart",
     }),
     addOne() {
-      let item = {
+      const item = {
         id: this.item.id,
-        quantity: this.item.qty,
+        quantity: this.item.quantity,
       };
       this.addOneToCart(item);
     },
@@ -55,5 +56,5 @@ export default {
       this.removeOneFromCart(this.item);
     },
   },
-};
+});
 </script>

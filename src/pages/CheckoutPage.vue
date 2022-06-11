@@ -115,7 +115,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { mapActions, mapGetters, mapState } from "vuex";
-import TheLoader from "../components/main/TheLoader.vue";
+import TheLoader from "../components/Main/TheLoader.vue";
 import { LoadStatuses } from "@/enums/LoadStatuses";
 
 const defaultForm = {

@@ -11,8 +11,8 @@
         <!-- Product Meta Data -->
         <div class="product-meta-data">
           <div class="line"></div>
-          <p class="product-price">{{ product.price }}</p>
-          <router-link :to="{ name: 'product', params: { slug: product.slug } }">
+          <p class="product-price">{{ product.price }} $</p>
+          <router-link :to="{ name: 'product', params: { product_id: product.id } }">
             <h6>{{ product.name }}</h6>
           </router-link>
         </div>
@@ -53,10 +53,7 @@ export default Vue.extend({
         id: this.product.id,
         quantity: 1,
       };
-      /* this.$bvToast.toast(`Добавлено в корзину :)`, {
-                autoHideDelay: 500
-            })*/
-      this.$store.commit("cart/addToCart", product);
+      this.$store.dispatch("cart/addToCart", product);
     },
   },
 });

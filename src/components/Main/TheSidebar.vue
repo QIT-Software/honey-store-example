@@ -3,7 +3,7 @@
     <!-- ##### Single Widget ##### -->
     <div class="widget catagory mb-50">
       <!-- Widget Title -->
-      <h6 class="widget-title mb-30">Catalog</h6>
+      <h6 class="widget-title mb-30">Catalogs</h6>
 
       <!--  Catagories  -->
       <div class="catagories-menu">
@@ -24,7 +24,7 @@
 
       <div class="widget-desc">
         <div class="slider-range">
-          <VueSlider v-model="localPriceRange" :max="localPriceRange[1]" :tooltip="'none'" />
+          <VueSlider v-model="localPriceRange" :max="maxPrice" :tooltip="'none'" />
           <div class="range-price">{{ localPriceRange[0] }} $. - {{ localPriceRange[1] }} $.</div>
         </div>
       </div>
@@ -43,19 +43,15 @@ export default Vue.extend({
   components: {
     VueSlider,
   },
-  watch: {
-    localPriceRange(newPriceRange) {
-      this.localPriceRange = newPriceRange;
-    },
-  },
   computed: {
-    ...mapState("products", ["priceRange"]),
+    ...mapState("products", ["priceRange", "maxPrice"]),
     ...mapState("catalogs", ["catalogs"]),
     localPriceRange: {
       get() {
         return this.priceRange;
       },
       set(newPriceRangeValue) {
+        console.log(newPriceRangeValue);
         this.$store.commit("products/setPriceRange", newPriceRangeValue);
       },
     },

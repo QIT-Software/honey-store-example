@@ -2,11 +2,11 @@
   <div class="d-flex align-items-center text-center flex-column section-padding-100">
     <img src="@/assets/images/core-img/404.svg" class="error__image" />
     <h3 class="text-danger mt-4">
-      <slot>Ошибка 404. Страница не найдена!</slot>
+      <slot>Ошибка 404. Page not found!</slot>
     </h3>
     <h6>
-      Пойдёмте
-      <router-link :to="{ name: 'home' }" class="text-warning">домой</router-link>, найдём что-нибудь вкусное
+      Let's go
+      <router-link :to="{ name: 'catalogs' }" class="text-warning">home</router-link>, we will find something else
       <strong>:)</strong>
     </h6>
   </div>

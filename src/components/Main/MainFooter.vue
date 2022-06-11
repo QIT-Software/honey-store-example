@@ -8,7 +8,7 @@
           <div class="single_widget_area">
             <!-- Logo -->
             <div class="footer-logo text-center">
-              <router-link :to="{ name: 'home' }">
+              <router-link :to="{ name: 'catalogs' }">
                 <img src="@/assets/images/logo.svg" width="152" height="88" alt="" />
               </router-link>
             </div>

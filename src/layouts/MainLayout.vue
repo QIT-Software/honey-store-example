@@ -13,9 +13,9 @@
 
 <script lang="ts">
 import Vue from "vue";
-import SearchBar from "../components/main/SearchBar.vue";
-import MainHeader from "../components/main/MainHeader.vue";
-import MainFooter from "../components/main/MainFooter.vue";
+import SearchBar from "../components/Main/SearchBar.vue";
+import MainHeader from "../components/Main/MainHeader.vue";
+import MainFooter from "../components/Main/MainFooter.vue";
 
 export default Vue.extend({
   name: "MainLayout",

@@ -18,12 +18,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr class="qty" is="cart-item" v-for="item in items" :key="item.id">
-                  <td></td>
-                  <td>{{ item.name }}</td>
-                  <td>{{ item.price }}</td>
-                  <td>{{ item.quantity }}</td>
-                </tr>
+                <CartItem class="qty" v-for="item in items" :key="item.id" :item="item" />
               </tbody>
             </table>
           </div>
@@ -57,7 +52,7 @@
 import Vue from "vue";
 import { mapActions, mapGetters, mapMutations } from "vuex";
 import CartItem from "../components/CardPage/CartItem.vue";
-import NotFound from "../components/main/NotFound.vue";
+import NotFound from "../components/Main/NotFound.vue";
 
 export default Vue.extend({
   name: "CartPage",
@@ -82,9 +77,7 @@ export default Vue.extend({
   },
 
   mounted() {
-    if (!this.products.length) {
-      this.fetchProducts();
-    }
+    this.fetchProducts();
   },
 });
 </script>
