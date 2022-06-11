@@ -34,6 +34,7 @@
             v-for="route in navigationRoutes"
             :key="route.routeName"
             :to="{ name: route.routeName }"
+            custom
           >
             <li :class="{ active: isActive }" @click="navigate">
               <a :href="href">
@@ -77,7 +78,7 @@ export default Vue.extend({
   },
   computed: {
     ...mapGetters({
-      cartTotal: "cart/cartTotal",
+      cartTotal: "cart/cartItemsCount",
     }),
   },
   methods: {

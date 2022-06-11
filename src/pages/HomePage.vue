@@ -16,11 +16,11 @@ export default Vue.extend({
   },
   methods: {
     ...mapActions({
-      loadProducts: "products/loadProducts",
+      fetchProducts: "products/fetchProducts",
     }),
   },
   created() {
-    this.loadProducts();
+    this.fetchProducts();
   },
 });
 </script>

@@ -24,8 +24,8 @@
 
       <div class="widget-desc">
         <div class="slider-range">
-          <VueSlider v-model="priceRange" :max="priceRange[1]" :tooltip="'none'" />
-          <div class="range-price">{{ priceRange[0] }} $. - {{ priceRange[1] }} $.</div>
+          <VueSlider v-model="localPriceRange" :max="localPriceRange[1]" :tooltip="'none'" />
+          <div class="range-price">{{ localPriceRange[0] }} $. - {{ localPriceRange[1] }} $.</div>
         </div>
       </div>
     </div>
@@ -34,7 +34,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { mapActions, mapGetters } from "vuex";
+import { mapActions, mapState } from "vuex";
 import VueSlider from "vue-slider-component";
 import "@/assets/scss/range-slider.scss";
 
@@ -44,28 +44,25 @@ export default Vue.extend({
     VueSlider,
   },
   watch: {
-    priceRange(newPriceRange) {
-      this.priceRange = newPriceRange;
+    localPriceRange(newPriceRange) {
+      this.localPriceRange = newPriceRange;
     },
   },
   computed: {
-    ...mapGetters({
-      getPriceRange: "products/getPriceRange",
-      catalogs: "catalogs/getCatalogs",
-    }),
-    priceRange: {
+    ...mapState("products", ["priceRange"]),
+    ...mapState("catalogs", ["catalogs"]),
+    localPriceRange: {
       get() {
-        return this.getPriceRange;
+        return this.priceRange;
       },
       set(newPriceRangeValue) {
-        this.setPriceRange(newPriceRangeValue);
+        this.$store.commit("products/setPriceRange", newPriceRangeValue);
       },
     },
   },
   methods: {
     ...mapActions({
       fetchCatalogs: "catalogs/fetchCatalogs",
-      setPriceRange: "products/setPriceRange",
     }),
   },
   mounted() {

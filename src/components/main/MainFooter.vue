@@ -40,6 +40,7 @@
                       :key="route.routeName"
                       :to="{ name: route.routeName }"
                       v-slot="{ href, isActive, navigate }"
+                      custom
                     >
                       <li class="nav-item" :class="{ active: isActive }" @click="navigate">
                         <a :href="href">{{ route.label }}</a>

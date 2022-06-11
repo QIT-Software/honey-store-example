@@ -5,6 +5,7 @@ import store from "./store";
 import NProgress from "vue-nprogress";
 import { ToastPlugin } from "bootstrap-vue";
 import VueRouter from "vue-router";
+import "@/assets/scss/style.scss";
 
 Vue.config.productionTip = false;
 Vue.use(ToastPlugin);

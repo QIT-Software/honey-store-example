@@ -1,11 +1,11 @@
 <template>
   <div class="delivering mt-4">
-    <h2>Страница доставки</h2>
+    <h2>Delivering page</h2>
   </div>
 </template>
 
 <script>
 export default {
-  name: "delivering",
+  name: "DeliveringPage",
 };
 </script>

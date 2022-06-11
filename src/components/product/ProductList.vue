@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 
 import TheLoader from "../main/TheLoader.vue";
 import TheSidebar from "../main/TheSidebar.vue";
@@ -40,9 +40,9 @@ export default Vue.extend({
     };
   },
   computed: {
+    ...mapState("products", ["productsLoadStatus"]),
     ...mapGetters({
       products: "products/getProducts",
-      productsLoadStatus: "products/getProductsLoadStatus",
     }),
   },
 });
