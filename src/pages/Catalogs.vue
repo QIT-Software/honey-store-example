@@ -1,45 +1,41 @@
 <template>
   <div style="display: contents">
-    <product-list></product-list>
+    <ProductList />
   </div>
 </template>
 
-<script>
-import ProductList from "../components/product/ProductList";
-
+<script lang="ts">
+import Vue from "vue";
 import { mapActions } from "vuex";
+import ProductList from "../components/product/ProductList.vue";
+import { ProductSearchOptions } from "@/types/Products";
 
-export default {
-  name: "Catalog",
+export default Vue.extend({
+  name: "CatalogsPage",
   components: {
     ProductList,
   },
-
   methods: {
     ...mapActions({
-      loadProducts: "products/loadProducts",
-      loadCatalog: "catalogs/loadCatalog",
+      fetchProducts: "products/fetchProducts",
+      fetchCatalog: "catalogs/fetchCatalog",
     }),
 
     fetchData() {
-      let params = [];
+      const searchOptions: ProductSearchOptions = {};
 
       if (this.$route.params.slug) {
-        params.push({
-          catalog: this.$route.params.slug,
-        });
+        searchOptions.catalog = this.$route.params.slug;
 
-        this.loadCatalog(this.$route.params.slug).catch(() => {
+        this.fetchCatalog(this.$route.params.slug).catch(() => {
           this.$router.push({ name: "404" });
         });
       }
       if (this.$route.params.search) {
-        params.push({
-          search: this.$route.params.search,
-        });
+        searchOptions.search = this.$route.params.search;
       }
 
-      this.loadProducts(...params);
+      this.fetchProducts(searchOptions);
     },
   },
 
@@ -50,5 +46,5 @@ export default {
   created() {
     this.fetchData();
   },
-};
+});
 </script>

@@ -1,21 +1,21 @@
 <template>
   <div ref="appWrapper">
-    <SearchBar />
+    <SearchBar @close-search-bar="isSearchBarActive = false" />
     <div class="main-content-wrapper d-flex clearfix">
-      <MainHeader />
+      <MainHeader @toggle-search-bar="isSearchBarActive = !isSearchBarActive" />
       <keep-alive include="404">
-        <router-view></router-view>
+        <router-view />
       </keep-alive>
     </div>
     <MainFooter />
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from "vue";
-import SearchBar from "../components/main/SearchBar";
-import MainHeader from "../components/main/MainHeader";
-import MainFooter from "../components/main/MainFooter";
+import SearchBar from "../components/main/SearchBar.vue";
+import MainHeader from "../components/main/MainHeader.vue";
+import MainFooter from "../components/main/MainFooter.vue";
 
 export default Vue.extend({
   name: "MainLayout",

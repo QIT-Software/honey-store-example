@@ -19,10 +19,10 @@
               </thead>
               <tbody>
                 <tr class="qty" is="cart-item" v-for="item in items" :key="item.id">
-                  <td>{{ item.}}</td>
                   <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.price }}</td>
+                  <td>{{ item.quantity }}</td>
                 </tr>
               </tbody>
             </table>
@@ -30,34 +30,36 @@
         </div>
         <div class="col-12 col-lg-4">
           <div class="cart-summary">
-            <h5>Итог покупки</h5>
+            <h5>Summary</h5>
             <ul class="summary-table">
               <li>
-                <span>подытог:</span> <span>{{ totalPrice }}</span>
+                <span>Subtotal:</span> <span>{{ totalPrice }}</span>
               </li>
-              <li><span>доставка:</span> <span>бесплатно</span></li>
+              <li><span>Delivery:</span> <span>Free</span></li>
               <li>
-                <span>итого:</span> <span>{{ totalPrice }}</span>
+                <span>Total:</span> <span>{{ totalPrice }}</span>
               </li>
             </ul>
             <div class="cart-btn mt-100">
-              <router-link :to="{ name: 'checkout' }" class="btn amado-btn w-100">Оформить заказ</router-link>
-              <span class="btn btn-link text-dark w-100 mt-3" @click="clearCart">Очистить корзину</span>
+              <router-link :to="{ name: 'checkout' }" class="btn amado-btn w-100">Checkout</router-link>
+              <span class="btn btn-link text-dark w-100 mt-3" @click="clearCart">Clear cart</span>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <not-found v-else>Ваша корзина пока пуста.</not-found>
+
+  <NotFound v-else>Your cart is empty :(</NotFound>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue";
 import { mapActions, mapGetters, mapMutations } from "vuex";
-import CartItem from "../components/CardPage/CartItem";
-import NotFound from "../components/main/NotFound";
+import CartItem from "../components/CardPage/CartItem.vue";
+import NotFound from "../components/main/NotFound.vue";
 
-export default {
+export default Vue.extend({
   name: "CartPage",
   components: {
     CartItem,
@@ -75,16 +77,16 @@ export default {
       clearCart: "cart/clearCart",
     }),
     ...mapActions({
-      loadProducts: "products/loadProducts",
+      fetchProducts: "products/fetchProducts",
     }),
   },
 
   mounted() {
     if (!this.products.length) {
-      this.loadProducts();
+      this.fetchProducts();
     }
   },
-};
+});
 </script>
 
 <style scoped>

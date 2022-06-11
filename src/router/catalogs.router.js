@@ -1,12 +1,15 @@
 const Catalogs = () => import("../pages/Catalogs");
 
+const defaultRouteMetaData = {
+  title: "Catalogs - HoneyStore",
+};
+
 export default [
   {
     path: "/catalogs",
     name: "catalogs",
     meta: {
-      title: "Каталогы - TajHoney",
-      layout: "main",
+      ...defaultRouteMetaData,
     },
     component: Catalogs,
     props: false,
@@ -16,7 +19,7 @@ export default [
         name: "catalog-item",
         props: true,
         meta: {
-          title: "Каталогы - TajHoney",
+          ...defaultRouteMetaData,
         },
       },
       {
@@ -24,7 +27,7 @@ export default [
         name: "search",
         props: true,
         meta: {
-          title: "Каталогы - TajHoney",
+          ...defaultRouteMetaData,
         },
       },
     ],

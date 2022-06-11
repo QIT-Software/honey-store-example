@@ -3,6 +3,10 @@ export type Product = {
   price: number;
 };
 
-export type ProductQueryOptions = "page" | "category" | "search";
+export type ProductQueryOptions = "page" | "catalog" | "search";
 
-export type ProductSearchOptions = Record<ProductQueryOptions, string>;
+export type ProductSearchOptions = {
+  page?: string;
+  catalog?: string;
+  search?: string;
+};

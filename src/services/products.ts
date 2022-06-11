@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { ProductSearchOptions, ProductQueryOptions } from "@/types/Products";
+import { ProductSearchOptions } from "@/types/Products";
 
 axios.defaults.baseURL = process.env.VUE_APP_API_URL;
 
@@ -21,7 +21,7 @@ export type CheckoutOrderForm = {
 
 export type CheckoutOrder = CheckoutOrderForm & { products: CartItem[] };
 
-const getQueryParameters = (options: Record<ProductQueryOptions, string>): string => {
+const getQueryParameters = (options: ProductSearchOptions): string => {
   const queries: string[] = [];
 
   Object.entries(options).forEach(([optionName, optionValue]) => {

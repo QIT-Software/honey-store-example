@@ -13,7 +13,7 @@
                 type="search"
                 name="search"
                 id="search"
-                placeholder="Введите слово..."
+                placeholder="Input what you are looking for..."
                 v-on:keyup.enter="search"
                 v-model="searchKeyword"
               />
@@ -30,22 +30,19 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import Vue from "vue";
 
-export default {
+export default Vue.extend({
   name: "SearchBar",
-
   data() {
     return {
       searchKeyword: "",
     };
   },
-
   methods: {
     closeSearchBar() {
-      this.$parent.$data.isSearchBarActive = false;
+      this.$emit("close-search-bar");
     },
-
     search() {
       this.$router.push({
         name: "search",
@@ -56,5 +53,5 @@ export default {
       this.closeSearchBar();
     },
   },
-};
+});
 </script>

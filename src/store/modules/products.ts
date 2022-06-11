@@ -2,7 +2,7 @@ import { Action, Module, VuexModule, Mutation } from "vuex-module-decorators";
 import { Product, ProductSearchOptions } from "@/types/Products";
 import { LoadStatuses } from "@/enums/LoadStatuses";
 import maxBy from "lodash/maxBy";
-import ProductsApi from "@/api/products";
+import ProductsApi from "@/services/products";
 
 type PaginationType = {
   page: number;

@@ -6,11 +6,7 @@
         <div class="row">
           <div v-if="productsLoadStatus === 2">
             <!-- Single Product Area -->
-            <div
-              v-for="product in filteredProducts"
-              :key="product.id"
-              class="col-12 col-sm-6 col-md-12 col-xl-6"
-            >
+            <div v-for="product in filteredProducts" :key="product.id" class="col-12 col-sm-6 col-md-12 col-xl-6">
               <div class="single-product-wrapper">
                 <!-- Product Image -->
                 <div class="product-img">
@@ -18,16 +14,12 @@
                 </div>
 
                 <!-- Product Description -->
-                <div
-                  class="product-description d-flex align-items-center justify-content-between"
-                >
+                <div class="product-description d-flex align-items-center justify-content-between">
                   <!-- Product Meta Data -->
                   <div class="product-meta-data">
                     <div class="line"></div>
                     <p class="product-price">{{ product.price }}</p>
-                    <router-link
-                      :to="{ name: 'product', params: { slug: product.slug } }"
-                    >
+                    <router-link :to="{ name: 'product', params: { slug: product.slug } }">
                       <h6>{{ product.name }}</h6>
                     </router-link>
                   </div>
@@ -41,11 +33,7 @@
                       <i class="fa fa-star" aria-hidden="true"></i>
                     </div>
                     <div class="cart">
-                      <a
-                        href="cart.html"
-                        data-toggle="tooltip"
-                        data-placement="left"
-                        title="Добавить в корзину"
+                      <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Добавить в корзину"
                         ><img src="@/assets/images/core-img/cart.png" alt=""
                       /></a>
                     </div>
@@ -132,9 +120,7 @@ export default {
       if (this.$route.params.slug) {
         this.catalog = this.getCatalogBySlug(this.$route.slug);
         this.sortedProducts = [...this.allProducts];
-        this.sortedProducts = this.sortedProducts.filter(
-          (item) => item.catalogs
-        );
+        this.sortedProducts = this.sortedProducts.filter((item) => item.catalogs);
       }
     },
     loadMore() {

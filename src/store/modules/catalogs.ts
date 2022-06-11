@@ -1,5 +1,5 @@
 import { Module, VuexModule, Mutation, Action } from "vuex-module-decorators";
-import CatalogsApi from "../../api/catalogs";
+import CatalogsApi from "../../services/catalogs";
 import { LoadStatuses } from "@/enums/LoadStatuses";
 import { Catalog } from "@/types/Catalogs";
 

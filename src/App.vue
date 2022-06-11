@@ -15,11 +15,6 @@ export default Vue.extend({
   components: {
     MainLayout,
   },
-  computed: {
-    layout() {
-      return (this.$route.meta.layout || "main") + "-layout";
-    },
-  },
 });
 </script>
 

@@ -1,5 +1,5 @@
 import { Module, VuexModule, Mutation, Action } from "vuex-module-decorators";
-import ProductsApi, { CheckoutOrder, CartItem, CheckoutOrderForm } from "../../api/products";
+import ProductsApi, { CheckoutOrder, CartItem, CheckoutOrderForm } from "../../services/products";
 
 @Module({
   namespaced: true,
@@ -16,7 +16,7 @@ export default class CartModule extends VuexModule {
     return this.items.length ?? 0;
   }
 
-  get cartItemsTotalPrice() {
+  get cartTotalPrice() {
     return this.getItems.reduce((totalPrice, item) => {
       totalPrice += item.price * item.quantity;
       return totalPrice;

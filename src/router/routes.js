@@ -1,9 +1,9 @@
 import catalogsRouter from "@/router/catalogs.router";
 
-const Home = () => import("../pages/Home");
+const Home = () => import("../pages/HomePage");
 const Product = () => import("../pages/Product");
 const Cart = () => import("../pages/CartPage");
-const Checkout = () => import("../pages/Checkout");
+const Checkout = () => import("../pages/CheckoutPage");
 const NotFound = () => import("../components/main/NotFound");
 
 export default [
@@ -13,7 +13,7 @@ export default [
       path: "/",
       name: "home",
       meta: {
-        title: "TajHoney",
+        title: "HoneyStore",
         layout: "main",
       },
       component: Home,
@@ -29,7 +29,7 @@ export default [
       name: "cart",
       component: Cart,
       meta: {
-        title: "Моя корзина",
+        title: "My cart",
       },
     },
     {
@@ -37,7 +37,7 @@ export default [
       name: "checkout",
       component: Checkout,
       meta: {
-        title: "Оформление заказа",
+        title: "Checkout",
       },
     },
     {
@@ -45,7 +45,7 @@ export default [
       name: "404",
       component: NotFound,
       meta: {
-        title: "404 - Страница не найдена",
+        title: "404 - Page not found",
       },
     },
     {
