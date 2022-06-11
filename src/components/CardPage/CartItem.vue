@@ -46,14 +46,10 @@ export default Vue.extend({
       removeOneFromCart: "cart/removeOneFromCart",
     }),
     addOne() {
-      const item = {
-        id: this.item.id,
-        quantity: this.item.quantity,
-      };
-      this.addOneToCart(item);
+      this.addOneToCart(this.item.id);
     },
     removeOne() {
-      this.removeOneFromCart(this.item);
+      this.removeOneFromCart(this.item.id);
     },
   },
 });

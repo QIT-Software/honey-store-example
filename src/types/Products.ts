@@ -3,6 +3,7 @@ export type Product = {
   name: string;
   price: number;
   catalog_id: number;
+  description: string;
 };
 
 export type ProductQueryOptions = "catalog" | "search";

@@ -19,7 +19,7 @@ const router = new VueRouter({
       redirect: { name: "catalogs" },
     },
     {
-      path: "/product/:id",
+      path: "/product/:product_id",
       name: "product",
       component: Product,
       props: true,

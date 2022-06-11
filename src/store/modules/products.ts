@@ -48,10 +48,10 @@ export default class ProductsModule extends VuexModule {
   }
 
   @Action
-  public fetchProductBySlug(slug: string): Promise<void> {
+  public fetchProductById(productId: number): Promise<void> {
     this.context.commit("setProductLoadStatus", LoadStatuses.FETCHING);
 
-    return ProductsApi.getProductBySlug(slug)
+    return ProductsApi.getProductById(productId)
       .then(({ data }) => {
         if (Array.isArray(data)) {
           this.context.commit("setProductLoadStatus", LoadStatuses.FAILED);

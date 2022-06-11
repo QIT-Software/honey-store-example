@@ -1,8 +1,5 @@
-import axios, { AxiosResponse } from "axios";
 import { ProductSearchOptions } from "@/types/Products";
 import { mockCatalogs, mockProducts } from "@/constants/MockedData";
-
-axios.defaults.baseURL = process.env.VUE_APP_API_URL;
 
 export type CartItem = {
   id: number;
@@ -62,11 +59,21 @@ export default {
     return mockProductsResponse(options);
   },
 
-  getProductBySlug(slug: string) {
-    return axios.get(`products/${slug}`).then(({ data }) => data);
+  getProductById(productId: number) {
+    return new Promise((resolve) => {
+      const product = mockProducts.find((product) => product.id === productId);
+      setTimeout(() => {
+        resolve({ data: product });
+      });
+    });
   },
 
-  checkout(order: CheckoutOrder): Promise<AxiosResponse> {
-    return axios.post("checkout", order).then(({ data }) => data);
+  checkout(order: CheckoutOrder) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        alert("Succesfull checkout. Wait 123123 years :)");
+        resolve({ data: order });
+      }, 100);
+    });
   },
 };

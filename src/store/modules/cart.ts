@@ -54,11 +54,11 @@ export default class CartModule extends VuexModule {
   }
 
   @Mutation
-  public addItemCart(item: CartItem, quantity?: number) {
+  public addItemCart(item: CartItem) {
     const addedItem = this.items.find((cartItem) => item.id === cartItem.id);
 
     if (addedItem) {
-      addedItem.quantity += quantity ? quantity : 1;
+      addedItem.quantity += 1;
       return;
     }
 
@@ -78,6 +78,12 @@ export default class CartModule extends VuexModule {
   @Mutation
   public setCartItems(items: CartItem[]) {
     this.items = items;
+  }
+
+  @Mutation
+  public addOneToCart(itemId: number) {
+    const cartItem = this.items.find((item) => item.id === itemId);
+    cartItem.quantity += 1;
   }
 
   @Mutation

@@ -85,11 +85,11 @@
               <h5>Order summary</h5>
               <ul class="summary-table">
                 <li>
-                  <span>Subtotal:</span> <span>{{ totalPrice }}</span>
+                  <span>Subtotal:</span> <span>{{ totalPrice }}$</span>
                 </li>
                 <li><span>Delivery:</span> <span>Free</span></li>
                 <li>
-                  <span>Total:</span> <span>{{ totalPrice }}</span>
+                  <span>Total:</span> <span>{{ totalPrice }}$</span>
                 </li>
               </ul>
 

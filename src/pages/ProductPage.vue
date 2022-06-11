@@ -89,7 +89,7 @@ export default Vue.extend({
   },
   methods: {
     ...mapActions({
-      loadProductBySlug: "products/fetchProductBySlug",
+      fetchProductById: "products/fetchProductById",
       addProductToCart: "cart/addToCart",
     }),
     handleMinusQuantity() {
@@ -101,8 +101,7 @@ export default Vue.extend({
     },
 
     fetchProduct() {
-      let slug = this.$route.params.slug;
-      this.loadProductBySlug(slug);
+      this.fetchProductById(Number(this.$route.params.product_id));
     },
 
     addToCart() {
