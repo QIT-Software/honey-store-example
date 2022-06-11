@@ -1,13 +1,25 @@
-import axios from "axios";
+import { mockCatalogs } from "@/constants/MockedData";
 
-axios.defaults.baseURL = process.env.VUE_APP_API_URL;
+const mockCatalogsResponse = new Promise((resolve) => {
+  setTimeout(() => {
+    resolve({ data: mockCatalogs });
+  }, 1500);
+});
+
+const mockCatalogBySlugResponse = (slug: string) =>
+  new Promise((resolve) => {
+    const catalog = mockCatalogs.find((catalog) => catalog.slug === slug);
+    setTimeout(() => {
+      resolve({ data: catalog });
+    }, 500);
+  });
 
 export default {
   getCatalogs() {
-    return axios.get("catalogs").then(({ data }) => data);
+    return mockCatalogsResponse;
   },
 
   getCatalogBySlug(slug: string) {
-    return axios.get(`catalogs/${slug}`).then(({ data }) => data);
+    return mockCatalogBySlugResponse(slug);
   },
 };

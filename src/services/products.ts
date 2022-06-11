@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { ProductSearchOptions } from "@/types/Products";
+import { mockCatalogs, mockProducts } from "@/constants/MockedData";
 
 axios.defaults.baseURL = process.env.VUE_APP_API_URL;
 
@@ -21,22 +22,38 @@ export type CheckoutOrderForm = {
 
 export type CheckoutOrder = CheckoutOrderForm & { products: CartItem[] };
 
-const getQueryParameters = (options: ProductSearchOptions): string => {
-  const queries: string[] = [];
+const mockProductsResponse = (searchOptions: ProductSearchOptions) =>
+  new Promise((resolve) => {
+    let products = [];
 
-  Object.entries(options).forEach(([optionName, optionValue]) => {
-    if (optionValue) {
-      queries.push(`${optionName}=${optionValue}`);
+    const { catalog, search } = searchOptions;
+
+    if (!catalog && !search) {
+      products = [...mockProducts];
     }
-  });
 
-  return queries.join("&");
-};
+    if (search && catalog) {
+      const catalogId = mockCatalogs.find((catalogItem) => catalogItem.slug === catalog).id;
+      products = mockProducts.filter((product) => product.catalog_id === catalogId && product.name.includes(search));
+    }
+
+    if (search && !catalog) {
+      products = mockProducts.filter((product) => product.name.includes(search));
+    }
+
+    if (catalog && !search) {
+      const catalogId = mockCatalogs.find((catalogItem) => catalogItem.slug === catalog).id;
+      products = mockProducts.filter((product) => product.catalog_id === catalogId);
+    }
+
+    setTimeout(() => {
+      resolve({ data: products });
+    }, 150);
+  });
 
 export default {
   getProducts(options: ProductSearchOptions) {
-    const queryParameters = getQueryParameters(options);
-    return axios.get(`products?${queryParameters}`).then(({ data }) => data);
+    return mockProductsResponse(options);
   },
 
   getProductBySlug(slug: string) {

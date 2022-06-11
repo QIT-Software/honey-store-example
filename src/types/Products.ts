@@ -1,12 +1,13 @@
 export type Product = {
   id: number;
+  name: string;
   price: number;
+  catalog_id: number;
 };
 
-export type ProductQueryOptions = "page" | "catalog" | "search";
+export type ProductQueryOptions = "catalog" | "search";
 
 export type ProductSearchOptions = {
-  page?: string;
   catalog?: string;
   search?: string;
 };
