@@ -1,5 +1,6 @@
-import { Product } from "@/types/Products";
+import { Product, ProductSearchOptions } from "@/types/Products";
 import { Catalog } from "@/types/Catalogs";
+import { CheckoutOrder } from "@/services/products";
 
 export const mockCatalogs: Catalog[] = [
   {
@@ -88,3 +89,69 @@ export const mockProducts: Product[] = [
       "The crystals in creamed honey create a smooth and easily spreadable product. It's a great addition to breakfast spread offerings and adds interest to any menu. ",
   },
 ];
+
+const doesNameIncludesKeyword = (productName: string, keyword: string): boolean => {
+  return productName.trim().toLowerCase().includes(keyword.trim().toLowerCase());
+};
+
+export const mockProductsResponse = (searchOptions: ProductSearchOptions) =>
+  new Promise((resolve) => {
+    let products = [];
+
+    const { catalog, search } = searchOptions;
+
+    if (!catalog && !search) {
+      products = [...mockProducts];
+    }
+
+    if (search && catalog) {
+      const catalogId = mockCatalogs.find((catalogItem) => catalogItem.slug === catalog).id;
+      products = mockProducts.filter(
+        (product) => product.catalog_id === catalogId && doesNameIncludesKeyword(product.name, search)
+      );
+    }
+
+    if (search && !catalog) {
+      products = mockProducts.filter((product) => doesNameIncludesKeyword(product.name, search));
+    }
+
+    if (catalog && !search) {
+      const catalogId = mockCatalogs.find((catalogItem) => catalogItem.slug === catalog).id;
+      products = mockProducts.filter((product) => product.catalog_id === catalogId);
+    }
+
+    setTimeout(() => {
+      resolve({ data: products });
+    }, 150);
+  });
+
+export const mockProductByIdResponse = (productId: number) =>
+  new Promise((resolve) => {
+    const product = mockProducts.find((product) => product.id === productId);
+    setTimeout(() => {
+      resolve({ data: product });
+    });
+  });
+
+export const mockCheckoutResponse = (order: CheckoutOrder) =>
+  new Promise((resolve) => {
+    setTimeout(() => {
+      alert("Successful checkout. Wait 123123 years :)");
+      resolve({ data: order });
+    }, 100);
+  });
+
+export const mockCatalogsResponse = () =>
+  new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ data: mockCatalogs });
+    }, 300);
+  });
+
+export const mockCatalogBySlugResponse = (slug: string) =>
+  new Promise((resolve) => {
+    const catalog = mockCatalogs.find((catalog) => catalog.slug === slug);
+    setTimeout(() => {
+      resolve({ data: catalog });
+    }, 500);
+  });

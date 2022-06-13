@@ -1,22 +1,8 @@
-import { mockCatalogs } from "@/constants/MockedData";
-
-const mockCatalogsResponse = new Promise((resolve) => {
-  setTimeout(() => {
-    resolve({ data: mockCatalogs });
-  }, 300);
-});
-
-const mockCatalogBySlugResponse = (slug: string) =>
-  new Promise((resolve) => {
-    const catalog = mockCatalogs.find((catalog) => catalog.slug === slug);
-    setTimeout(() => {
-      resolve({ data: catalog });
-    }, 500);
-  });
+import { mockCatalogBySlugResponse, mockCatalogsResponse } from "@/constants/MockedData";
 
 export default {
   getCatalogs() {
-    return mockCatalogsResponse;
+    return mockCatalogsResponse();
   },
 
   getCatalogBySlug(slug: string) {
