@@ -1,5 +1,6 @@
 import { Module, VuexModule, Mutation, Action } from "vuex-module-decorators";
-import ProductsApi, { CheckoutOrder, CartItem, CheckoutOrderForm } from "../../services/products";
+import ProductsApi, { CheckoutOrder, CheckoutOrderForm } from "../../services/products";
+import { CartItem } from "@/types/Cart";
 
 @Module({
   namespaced: true,

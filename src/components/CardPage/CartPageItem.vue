@@ -30,7 +30,7 @@
 <script lang="ts">
 import Vue, { PropType } from "vue";
 import { mapMutations } from "vuex";
-import { CartItem } from "@/services/products";
+import { CartItem } from "@/types/Cart";
 
 export default Vue.extend({
   name: "CartItem",
