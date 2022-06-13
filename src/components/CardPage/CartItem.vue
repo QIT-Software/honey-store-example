@@ -42,11 +42,11 @@ export default Vue.extend({
   },
   methods: {
     ...mapMutations({
-      addOneToCart: "cart/addOneToCart",
+      addToCart: "cart/addItemCart",
       removeOneFromCart: "cart/removeOneFromCart",
     }),
     addOne() {
-      this.addOneToCart(this.item.id);
+      this.addToCart({ id: this.item.id, quantity: 1 });
     },
     removeOne() {
       this.removeOneFromCart(this.item.id);

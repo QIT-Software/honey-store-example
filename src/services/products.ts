@@ -3,8 +3,6 @@ import { mockCatalogs, mockProducts } from "@/constants/MockedData";
 
 export type CartItem = {
   id: number;
-  name: string;
-  price: number;
   quantity: number;
 };
 

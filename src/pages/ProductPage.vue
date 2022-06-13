@@ -107,7 +107,7 @@ export default Vue.extend({
     addToCart() {
       const product = {
         id: this.product.id,
-        quantity: this.qty,
+        quantity: this.quantity,
       };
       this.addProductToCart({ ...product });
     },
