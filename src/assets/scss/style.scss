@@ -1336,10 +1336,6 @@ img {
     z-index: 1;
     background-color: #252525;
     padding: 80px 0;
-    @media #{$breakpoint-xs} {
-        position: fixed;
-        bottom: 0px;
-    }
     .single_widget_area {
         .copywrite {
             font-size: 12px;
