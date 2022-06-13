@@ -51,7 +51,6 @@ export default Vue.extend({
         return this.priceRange;
       },
       set(newPriceRangeValue) {
-        console.log(newPriceRangeValue);
         this.$store.commit("products/setPriceRange", newPriceRangeValue);
       },
     },
