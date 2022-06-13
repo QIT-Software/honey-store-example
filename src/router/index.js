@@ -7,7 +7,7 @@ const Catalogs = () => import("../pages/CatalogsPage");
 const Product = () => import("../pages/ProductPage");
 const Cart = () => import("../pages/CartPage");
 const Checkout = () => import("../pages/CheckoutPage");
-const NotFound = () => import("../components/Main/NotFound");
+const NotFound = () => import("../components/Common/NotFound");
 const About = () => import("../pages/AboutPage");
 const Delivering = () => import("../pages/DeliveringPage");
 

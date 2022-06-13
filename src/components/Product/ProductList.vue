@@ -25,8 +25,8 @@
 import Vue from "vue";
 import { mapGetters, mapState } from "vuex";
 
-import TheLoader from "../Main/TheLoader.vue";
-import TheSidebar from "../Main/TheSidebar.vue";
+import TheLoader from "../Common/TheLoader.vue";
+import TheSidebar from "../Common/TheSidebar.vue";
 import ProductCard from "./ProductCard.vue";
 import { LoadStatuses } from "@/enums/LoadStatuses";
 

@@ -51,8 +51,8 @@
 <script lang="ts">
 import Vue from "vue";
 import { mapActions, mapGetters, mapMutations } from "vuex";
-import CartItem from "../components/CardPage/CartItem.vue";
-import NotFound from "../components/Main/NotFound.vue";
+import CartItem from "../components/CardPage/CartPageItem.vue";
+import NotFound from "../components/Common/NotFound.vue";
 
 export default Vue.extend({
   name: "CartPage",

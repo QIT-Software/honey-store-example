@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import SearchBar from "../components/Main/SearchBar.vue";
+import SearchBar from "../components/Common/SearchBar.vue";
 import MainHeader from "../components/Main/MainHeader.vue";
 import MainFooter from "../components/Main/MainFooter.vue";
 

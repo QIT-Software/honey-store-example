@@ -65,8 +65,8 @@
 <script lang="ts">
 import Vue from "vue";
 import { mapActions, mapState } from "vuex";
-import NotFound from "../components/Main/NotFound.vue";
-import TheLoader from "../components/Main/TheLoader.vue";
+import NotFound from "../components/Common/NotFound.vue";
+import TheLoader from "../components/Common/TheLoader.vue";
 import { LoadStatuses } from "@/enums/LoadStatuses";
 
 export default Vue.extend({
