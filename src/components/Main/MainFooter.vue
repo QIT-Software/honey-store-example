@@ -43,7 +43,7 @@
                       custom
                     >
                       <li class="nav-item" :class="{ active: isActive }" @click="navigate">
-                        <a :href="href">{{ route.label }}</a>
+                        <a :href="href" class="nav-link">{{ route.label }}</a>
                       </li>
                     </router-link>
                   </ul>
