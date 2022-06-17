@@ -1,6 +1,9 @@
-# honey-store
+# Mock Honey Store Project
 
-## Project setup
+## Stack
+Vue 2 + TS + Vuex + Vue Router
+
+## Setup project
 ```
 yarn install
 ```
@@ -14,11 +17,3 @@ yarn serve
 ```
 yarn build
 ```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
