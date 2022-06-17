@@ -1,4 +1,6 @@
-# Mock Honey Store Project
+# Demo Honey Store Project
+
+---
 
 ## Stack
 Vue 2 + TS + Vuex + Vue Router
